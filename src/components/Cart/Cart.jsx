@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CartItem from './CartItem/CartItem';
 
@@ -17,7 +18,11 @@ const Cart = ({ cart }) => {
   const EmptyCart = () => {
     return (
       <>
-        <Typography variant="subtitle1">You have no items in your shopping cart, start adding some!</Typography>
+        <Typography
+          variant="subtitle1">
+          You have no items in your shopping cart, start adding some!
+          <Link to="/" className={classes.link}></Link>
+        </Typography>
       </>
     )
   }
@@ -52,7 +57,7 @@ const Cart = ({ cart }) => {
   return (
     <Container className={classes.container}>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
+      <Typography className={classes.title} variant="h4" gutterBottom>Your Shopping Cart</Typography>
       {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   )
