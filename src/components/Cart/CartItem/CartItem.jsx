@@ -10,7 +10,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveCartItem }) => {
   const classes = useStyles();
   console.log(item)
   return (
-    <Card className={classes.root}>
+    <Card className={classes.set}>
       <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
       <CardContent className={classes.cardContent}>
         <Typography variant="h6">{item.name}</Typography>
