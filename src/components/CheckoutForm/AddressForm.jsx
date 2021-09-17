@@ -7,6 +7,9 @@ import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@materia
 // Components
 import FormInput from './FormInput';
 
+//Commerce API
+import { commerce } from '../../lib/commerce'
+
 
 const AddressForm = () => {
   const [shippingCountries, setShippingCountries] = useState([]);
@@ -16,6 +19,13 @@ const AddressForm = () => {
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState('');
   const methods = useForm();
+
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.checkout.generateToken(checkoutTokenId)
+    setShippingCountries(countries)
+  }
+
+
 
   return (
     <>
@@ -31,24 +41,24 @@ const AddressForm = () => {
             <FormInput required name="zip" label="Zip / Postal code" />
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
-              <Select value={ } fullWidth onChange={ }>
-                <MenuItem key={ } value={ }>
+              <Select value='' fullWidth onChange=''>
+                <MenuItem key='' value=''>
                   Select Me
                 </MenuItem>
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
-              <Select value={ } fullWidth onChange={ }>
-                <MenuItem key={ } value={ }>
+              <Select value='' fullWidth onChange=''>
+                <MenuItem key='' value=''>
                   Select Me
                 </MenuItem>
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Options</InputLabel>
-              <Select value={ } fullWidth onChange={ }>
-                <MenuItem key={ } value={ }>
+              <Select value='' fullWidth onChange=''>
+                <MenuItem key='' value=''>
                   Select Me
                 </MenuItem>
               </Select>
