@@ -23,20 +23,21 @@ const Checkout = ({ cart }) => {
   useEffect(() => {
     const generateToken = async () => {
       try {
-        const token = await commerce.checkout.generateToken(cart.id, { type: cart });
+        const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
         console.log(token);
         setCheckoutToken(token);
-
       } catch (error) {
-
+        console.log(error.message)
       }
     }
 
     generateToken();
-  }, [])
+  }, [cart])
 
   const Form = () => (
-    activeStep === 0 ? <AddressForm /> : <PaymentForm />
+    activeStep === 0
+      ? <AddressForm checkoutToken={checkoutToken} />
+      : <PaymentForm />
   )
 
   const Confirmation = () => (
@@ -59,7 +60,7 @@ const Checkout = ({ cart }) => {
             ))}
 
           </Stepper>
-          {activeStep === steps.length ? <Confirmation /> : <Form />}
+          {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
         </Paper>
 
       </main>
